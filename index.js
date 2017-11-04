@@ -18,4 +18,9 @@ io.on('connection', function(socket) {
     io.emit('getParty');
   });
 
+  socket.on('newLog', function(data) {
+    console.log(data);
+    io.emit('newLog', data);
+  });
+
 });
