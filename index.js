@@ -1,11 +1,13 @@
-var app = require('express')();
-var http = require('http').Server(app);
-var io = require('socket.io')(https);
+var https = require('https');
+var fs =    require('fs');
+var options = {
+      key:    fs.readFileSync('../../key.pem'),
+      cert:   fs.readFileSync('../../cert.pem'),
+    };
+var app = https.createServer(options);
+io = require('socket.io').listen(app);
+app.listen(3000, "0.0.0.0");
 
-
-http.listen(3000, function(){
-  console.log('listening on *:3000');
-});
 
 io.on('connection', function(socket) {
 
