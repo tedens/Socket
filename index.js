@@ -1,25 +1,14 @@
-var express = require('express');
-var app = express();
-var socketIO = require('socket.io');
-var LEX = require('letsencrypt-express').testing();
-var https = require('http2');
+var https = require('https');
+var fs =    require('fs');
+var options = {
+      key:    fs.readFileSync('key.pem'),
+      cert:   fs.readFileSync('cert.pem'),
+      ca:     fs.readFileSync('ca.pem'),
+    };
+var app = https.createServer(options);
+io = require('socket.io').listen(app);
+app.listen(3000);
 
-var lex = LEX.create({
-  configDir: '/etc/letsencrypt'
-, letsencrypt: null
-, approveRegistration: function (hostname, cb) {
-    cb(null, {
-      domains: ['socket.imightybigman.com']
-    , email: 'junnobaka@gmail.com'
-    , agreeTos: true
-    });
-  }
-});
-
-var server = https.createServer(lex.httpsOptions, LEX.createAcmeResponder(lex, app));
-
-server.listen(3000, "0.0.0.0");
-var io = socketIO.listen(server);
 
 io.on('connection', function(socket) {
 
