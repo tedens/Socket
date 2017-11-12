@@ -1,4 +1,4 @@
-var https = require('https');
+var https = require('https').globalAgent.options.rejectUnauthorized = false;
 var fs =    require('fs');
 var options = {
       key:    fs.readFileSync('key.pem'),
@@ -22,6 +22,10 @@ io.on('connection', function(socket) {
 
   socket.on('newLog', function(data) {
     io.emit('newLog', data);
+  });
+
+  socket.on('notify', function(data) {
+    io.emit('notify', data);
   });
 
 });
