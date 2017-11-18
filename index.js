@@ -29,4 +29,12 @@ io.on('connection', function(socket) {
     io.emit('notify', data);
   });
 
+  socket.on('init', function(data) {
+    io.emit('init', data);
+  });
+
+  socket.on('dm', function(data) {
+    io.emit('dm', data);
+  });
+
 });
