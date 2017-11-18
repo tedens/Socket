@@ -21,6 +21,10 @@ io.on('connection', function(socket) {
     io.emit('getParty');
   });
 
+  socket.on('resetInit', function() {
+    io.emit('resetInit');
+  });
+
   socket.on('newLog', function(data) {
     io.emit('newLog', data);
   });
@@ -36,5 +40,7 @@ io.on('connection', function(socket) {
   socket.on('dm', function(data) {
     io.emit('dm', data);
   });
+
+
 
 });
