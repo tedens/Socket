@@ -17,7 +17,7 @@ io.on('connection', function(socket) {
   });
 
   // Receives a emit from the app when DM updates a character
-  socket.on('updateParty', function(data) {
+  socket.on('updateParty', function() {
     io.emit('getParty');
   });
 
