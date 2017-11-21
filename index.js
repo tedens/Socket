@@ -41,6 +41,10 @@ io.on('connection', function(socket) {
     io.emit('dm', data);
   });
 
+  socket.on('action', function(data) {
+    io.emit(data.action, data);
+  });
+
 
 
 });
