@@ -3,7 +3,11 @@
   "version": "0.0.1",
   "description": "Live log for our DND app (Scorch)",
   "dependencies": {
+    "cors": "^2.8.4",
     "express": "^4.15.2",
-    "socket.io": "^2.0.4"
+    "http2": "^3.3.7",
+    "letsencrypt-express": "^2.0.6",
+    "socket.io": "^2.0.4",
+    "spdy": "^3.4.7"
   }
 }
